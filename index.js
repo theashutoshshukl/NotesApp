@@ -9,14 +9,12 @@ const addNote = () => {
     }
     else {
         localStorage.setItem(title, desc);
+        crd.innerHTML += `<div class="card">
+        <h2 class="t-title">${title}
+        <span><i onclick="handleTrash()" class="fa-solid fa-trash"></i></span></h2>
+        <p>${desc}</p>
+    </div>`
     }
-
-    crd.innerHTML += `<div class="card">
-    <h2 class="t-title">${title}
-    <span><i onclick="handleTrash()" class="fa-solid fa-trash"></i></span></h2>
-    <p>${desc}</p>
-</div>`
-
 
     title = document.getElementById('title').value = '';
     desc = document.getElementById('desc').value = '';

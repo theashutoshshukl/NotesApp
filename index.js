@@ -6,6 +6,7 @@ const addNote = () => {
 
     if (title == "") {
         localStorage.removeItem(title);
+        location.reload();
     }
     else {
         localStorage.setItem(title, desc);
@@ -14,7 +15,6 @@ const addNote = () => {
         <span><i onclick="handleTrash()" class="fa-solid fa-trash"></i></span></h2>
         <p>${desc}</p>
     </div>`
-        location.reload();
     }
 
     title = document.getElementById('title').value = '';

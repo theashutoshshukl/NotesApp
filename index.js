@@ -12,7 +12,8 @@ const addNote = () => {
     }
 
     crd.innerHTML += `<div class="card">
-    <h2 class="t-title">${title}</h2>
+    <h2 class="t-title">${title}
+    <span><i onclick="handleTrash()" class="fa-solid fa-trash"></i></span></h2>
     <p>${desc}</p>
 </div>`
 
@@ -25,7 +26,8 @@ const getNotes = () => {
     for (let i = 0; i < localStorage.length; i++) {
         let note = localStorage.key(i);
         let ihtml = `<div class="card">
-        <h2 class="t-title">${note}</h2>
+        <h2 class="t-title">${note}
+        <span><i onclick="handleTrash()" class="fa-solid fa-trash"></i></span></h2>
         <p>${localStorage.getItem(note)}</p>
     </div>`
         crd.innerHTML += ihtml;
@@ -34,9 +36,8 @@ const getNotes = () => {
 getNotes();
 
 const handleTrash = () => {
-    let current = document.querySelector('.t-title');
-    let next = current.innerHTML;
-    localStorage.removeItem(next);
+    let Dnote = prompt("Enter Notes title You want to delete:");
+    let deleteNote = localStorage.removeItem(Dnote);
 
     location.reload();
 }

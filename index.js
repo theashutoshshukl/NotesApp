@@ -14,6 +14,7 @@ const addNote = () => {
         <span><i onclick="handleTrash()" class="fa-solid fa-trash"></i></span></h2>
         <p>${desc}</p>
     </div>`
+        location.reload();
     }
 
     title = document.getElementById('title').value = '';

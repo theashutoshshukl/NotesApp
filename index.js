@@ -1,42 +1,62 @@
-let crd = document.getElementById('crd-cont');
-
+// Creating a new Note
 const addNote = () => {
     let title = document.getElementById('title').value;
     let desc = document.getElementById('desc').value;
 
-    if (title == "") {
-        localStorage.removeItem(title);
-        location.reload();
+    if (title == '') {
+        const handleTrash = (itemIndex) => {
+            let itemJsonArrayStr = localStorage.getItem('itemJson');
+            itemJsonArray = JSON.parse(itemJsonArrayStr);
+
+            itemJsonArray.splice(itemIndex, 1);
+            localStorage.setItem('itemJson', JSON.stringify(itemJsonArray));
+        }
     }
     else {
-        localStorage.setItem(title, desc);
-        crd.innerHTML += `<div class="card">
-        <h2 class="t-title">${title}
-        <span><i onclick="handleTrash()" class="fa-solid fa-trash"></i></span></h2>
-        <p>${desc}</p>
-    </div>`
+        console.log("Creating a new Note...");
+        itemJsonArray.push([title, desc]);
+        localStorage.setItem('itemJson', JSON.stringify(itemJsonArray))
     }
 
-    title = document.getElementById('title').value = '';
-    desc = document.getElementById('desc').value = '';
+    document.getElementById('title').value = '';    
+    document.getElementById('desc').value = '';    
+
+    show();
 }
 
-const getNotes = () => {
-    for (let i = 0; i < localStorage.length; i++) {
-        let note = localStorage.key(i);
-        let ihtml = `<div class="card">
-        <h2 class="t-title">${note}
-        <span><i onclick="handleTrash()" class="fa-solid fa-trash"></i></span></h2>
-        <p>${localStorage.getItem(note)}</p>
-    </div>`
-        crd.innerHTML += ihtml;
+// Showing Notes
+const show = () => {
+    if (localStorage.getItem('itemJson') == null) {
+        let itemJsonArray = [];
+        localStorage.setItem('itemJson', JSON.stringify(itemJsonArray));
     }
+    else {
+        let itemJsonArrayStr = localStorage.getItem('itemJson');
+        itemJsonArray = JSON.parse(itemJsonArrayStr);
+    }
+
+    // Adding Notes in HTML
+    let cardContainer = document.getElementById('cardContainer');
+    let ihtml = "";
+    itemJsonArray.forEach((element, index) => {
+        ihtml += `<div class="card">
+        <h2 class="t-title">${element[0]}
+            <span><i onclick="handleTrash(${index})" class="fa-solid fa-trash"></i></span>
+        </h2>
+        <p>${element[1]}</p>
+    </div>`
+    });
+    cardContainer.innerHTML = ihtml;
 }
-getNotes();
+show();
 
-const handleTrash = () => {
-    let Dnote = prompt("Enter Notes title You want to delete:");
-    let deleteNote = localStorage.removeItem(Dnote);
+// Adding Delete note functionality
+const handleTrash = (itemIndex) => {
+    let itemJsonArrayStr = localStorage.getItem('itemJson');
+    itemJsonArray = JSON.parse(itemJsonArrayStr);
 
-    location.reload();
+    itemJsonArray.splice(itemIndex, 1);
+    localStorage.setItem('itemJson', JSON.stringify(itemJsonArray));
+
+    show();
 }

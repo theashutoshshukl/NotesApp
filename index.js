@@ -49,7 +49,7 @@ const show = () => {
     cardContainer.innerHTML = ihtml;
 }
 show();
-
+console.log("HEY")
 // Adding Delete note functionality
 const handleTrash = (itemIndex) => {
     let itemJsonArrayStr = localStorage.getItem('itemJson');

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="backstyle.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="notecard.css">
+    <title>Notes app</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1 id="heading">Notes app</h1>
+        <label for="title">Title</label>
+        <input type="text" id="title" placeholder="Enter Notes Title...">
+        <label for="Description">Description</label>
+        <textarea name="description" id="desc" cols="30" rows="10" placeholder="Enter Notes Description..."></textarea>
+        <div class="buttons">
+            <button class="btn" onclick="addNote()">Add note</button>
+        </div>
+    </div>
+
+    <div class="card-container" id="cardContainer">
+    </div>
+
+    <!-- Background Image -->
+    <div class="backContainer">
+        <img class="background" src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/221808/sky.jpg" />
+    </div>
+
+    <script src="https://kit.fontawesome.com/e1e43c61e6.js" crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>

@@ -26,7 +26,7 @@ const addNote = () => {
 
 // Showing Notes
 const show = () => {
-    if (localStorage.getItem('notesJson') == null) {
+    if (localStorage.getItem('notesJson') === null) {
         let notesJsonArray = [];
         localStorage.setItem('notesJson', JSON.stringify(notesJsonArray));
     }

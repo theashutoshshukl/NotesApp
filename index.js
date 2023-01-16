@@ -5,20 +5,20 @@ const addNote = () => {
 
     if (title == '') {
         const handleTrash = (itemIndex) => {
-            let itemJsonArrayStr = localStorage.getItem('itemJson');
-            itemJsonArray = JSON.parse(itemJsonArrayStr);
+            let notesJsonArrayStr = localStorage.getItem('notesJson');
+            notesJsonArray = JSON.parse(notesJsonArrayStr);
 
-            itemJsonArray.splice(itemIndex, 1);
-            localStorage.setItem('itemJson', JSON.stringify(itemJsonArray));
+            notesJsonArray.splice(itemIndex, 1);
+            localStorage.setItem('notesJson', JSON.stringify(notesJsonArray));
         }
     }
     else {
         console.log("Creating a new Note...");
-        itemJsonArray.push([title, desc]);
-        localStorage.setItem('itemJson', JSON.stringify(itemJsonArray))
+        notesJsonArray.push([title, desc]);
+        localStorage.setItem('notesJson', JSON.stringify(notesJsonArray))
     }
 
-    document.getElementById('title').value = '';    
+    document.getElementById('title').value = '';
     document.getElementById('desc').value = '';    
 
     show();
@@ -26,19 +26,19 @@ const addNote = () => {
 
 // Showing Notes
 const show = () => {
-    if (localStorage.getItem('itemJson') == null) {
-        let itemJsonArray = [];
-        localStorage.setItem('itemJson', JSON.stringify(itemJsonArray));
+    if (localStorage.getItem('notesJson') == null) {
+        let notesJsonArray = [];
+        localStorage.setItem('notesJson', JSON.stringify(notesJsonArray));
     }
     else {
-        let itemJsonArrayStr = localStorage.getItem('itemJson');
-        itemJsonArray = JSON.parse(itemJsonArrayStr);
+        let notesJsonArrayStr = localStorage.getItem('notesJson');
+        notesJsonArray = JSON.parse(notesJsonArrayStr);
     }
 
     // Adding Notes in HTML
     let cardContainer = document.getElementById('cardContainer');
     let ihtml = "";
-    itemJsonArray.forEach((element, index) => {
+    notesJsonArray.forEach((element, index) => {
         ihtml += `<div class="card">
         <h2 class="t-title">${element[0]}
             <span><i onclick="handleTrash(${index})" class="fa-solid fa-trash"></i></span>
@@ -52,11 +52,11 @@ show();
 
 // Adding Delete note functionality
 const handleTrash = (itemIndex) => {
-    let itemJsonArrayStr = localStorage.getItem('itemJson');
-    itemJsonArray = JSON.parse(itemJsonArrayStr);
+    let notesJsonArrayStr = localStorage.getItem('notesJson');
+    notesJsonArray = JSON.parse(notesJsonArrayStr);
 
-    itemJsonArray.splice(itemIndex, 1);
-    localStorage.setItem('itemJson', JSON.stringify(itemJsonArray));
+    notesJsonArray.splice(itemIndex, 1);
+    localStorage.setItem('notesJson', JSON.stringify(notesJsonArray));
 
     show();
 }

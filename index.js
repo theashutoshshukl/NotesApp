@@ -1,5 +1,3 @@
-window.reload()
-
 // Creating a new Note
 const addNote = () => {
     let title = document.getElementById('title').value;

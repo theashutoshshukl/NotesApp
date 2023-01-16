@@ -14,6 +14,8 @@ const addNote = () => {
     }
     else {
         console.log("Creating a new Note...");
+        let notesJsonArrayStr = localStorage.getItem('notesJson');
+        notesJsonArray = JSON.parse(notesJsonArrayStr)
         notesJsonArray.push([title, desc]);
         localStorage.setItem('notesJson', JSON.stringify(notesJsonArray))
     }
@@ -26,7 +28,7 @@ const addNote = () => {
 
 // Showing Notes
 const show = () => {
-    if (localStorage.getItem('notesJson') === null) {
+    if (localStorage.getItem('notesJson') == null) {
         let notesJsonArray = [];
         localStorage.setItem('notesJson', JSON.stringify(notesJsonArray));
     }
